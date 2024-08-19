@@ -17,15 +17,21 @@ public class MenuUI : MonoBehaviour
         groups.Add(new GroupInfo("Player", false, new List<ToggleInfo>() {
             new ToggleInfo(" NoClip", () => CheatToggles.noClip, x => CheatToggles.noClip = x),
             new ToggleInfo(" SpeedHack", () => CheatToggles.speedBoost, x => CheatToggles.speedBoost = x),
+            new ToggleInfo(" ForceAumRpcForEveryone", () => CheatToggles.ForceAumRpcForEveryone, x => CheatToggles.ForceAumRpcForEveryone = x),
             }, new List<SubmenuInfo> {
             new SubmenuInfo("Murder", false, new List<ToggleInfo>() {
                 new ToggleInfo(" Murder Player", () => CheatToggles.murderPlayer, x => CheatToggles.murderPlayer = x),
                 new ToggleInfo(" Murder All", () => CheatToggles.murderAll, x => CheatToggles.murderAll = x),
             }),
+            new SubmenuInfo("Kick", false, new List<ToggleInfo>() {
+                new ToggleInfo(" Kick Player", () => CheatToggles.revivePlayer, x => CheatToggles.revivePlayer = x),
+                new ToggleInfo(" Kick All", () => CheatToggles.reviveAll, x => CheatToggles.reviveAll = x),
+            }),
             new SubmenuInfo("Teleport", false, new List<ToggleInfo>() {
                 new ToggleInfo(" to Cursor", () => CheatToggles.teleportCursor, x => CheatToggles.teleportCursor = x),
                 new ToggleInfo(" to Player", () => CheatToggles.teleportPlayer, x => CheatToggles.teleportPlayer = x),
-            }),
+            })
+            
         }
         ));
 
@@ -148,7 +154,7 @@ public class MenuUI : MonoBehaviour
         CheatToggles.unlockFeatures = CheatToggles.freeCosmetics = CheatToggles.avoidBans = true;
 
         if(!Utils.isPlayer){
-            CheatToggles.changeRole = CheatToggles.murderAll = CheatToggles.teleportCursor = CheatToggles.teleportPlayer = CheatToggles.spectate = CheatToggles.freecam = CheatToggles.murderPlayer;
+            CheatToggles.changeRole = CheatToggles.murderAll = CheatToggles.reviveAll = CheatToggles.teleportCursor = CheatToggles.teleportPlayer = CheatToggles.spectate = CheatToggles.freecam = CheatToggles.murderPlayer = CheatToggles.revivePlayer;
         }
 
         //Host-only cheats are turned off if LocalPlayer is not the game's host

@@ -8,6 +8,9 @@ public static class MalumPPMCheats
 {
     public static bool murderPlayerActive;
     public static bool spectateActive;
+    public static bool kickPlayerActive;
+    public static bool revivePlayerActive;
+
     public static bool teleportPlayerActive;
     public static bool reportBodyActive;
     public static bool changeRoleActive;
@@ -53,7 +56,64 @@ public static class MalumPPMCheats
             }
         }
     }
+    public static void revivePlayerPPM()
+    {
+        if (CheatToggles.revivePlayer)
+        {
+            if (!revivePlayerActive)
+            {
+                // Close any player pick menus already open & their cheats
+                if (PlayerPickMenu.playerpickMenu != null)
+                {
+                    PlayerPickMenu.playerpickMenu.Close();
+                    CheatToggles.DisablePPMCheats("revivePlayer");
+                }
 
+                List<NetworkedPlayerInfo> playerDataList = new List<NetworkedPlayerInfo>();
+
+                // All players are saved to playerList
+                foreach (var player in PlayerControl.AllPlayerControls)
+                {
+                    playerDataList.Add(player.Data);
+                }
+
+                // Player pick menu made for reviving any player
+                PlayerPickMenu.openPlayerPickMenu(playerDataList, (Action)(() =>
+                {
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
+                    HudManager.Instance.Notifier.AddDisconnectMessage("Kicked " + PlayerPickMenu.targetPlayerData.Object.name);
+                }));
+
+                revivePlayerActive = true;
+            }
+
+            // Deactivate cheat if menu is closed
+            if (PlayerPickMenu.playerpickMenu == null)
+            {
+                CheatToggles.revivePlayer = false;
+            }
+        }
+        else if (revivePlayerActive)
+        {
+            revivePlayerActive = false;
+        }
+    }
     public static void murderPlayerPPM()
     {
         if (CheatToggles.murderPlayer)
@@ -67,7 +127,7 @@ public static class MalumPPMCheats
                     CheatToggles.DisablePPMCheats("murderPlayer");
                 }
 
-                if (Utils.isLobby){
+                if (false){
                     HudManager.Instance.Notifier.AddDisconnectMessage("Killing in lobby disabled for being too buggy");
                     CheatToggles.murderPlayer = false;
                     return;
@@ -84,6 +144,9 @@ public static class MalumPPMCheats
                 // Player pick menu made for killing any player by sending a successful MurderPlayer RPC call
                 PlayerPickMenu.openPlayerPickMenu(playerDataList, (Action)(() =>
                 {
+
+                    
+                    HudManager.Instance.Notifier.AddDisconnectMessage("Killed " + PlayerPickMenu.targetPlayerData.Object.name);
                     Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
                 }));
 
@@ -98,6 +161,52 @@ public static class MalumPPMCheats
         else if (murderPlayerActive)
         {
             murderPlayerActive = false;
+        }
+    }
+    public static void kickPlayerPPM()
+    {
+        if (CheatToggles.kickPlayer)
+        {
+            if (!murderPlayerActive)
+            {
+                // Close any player pick menus already open & their cheats
+                if (PlayerPickMenu.playerpickMenu != null)
+                {
+                    PlayerPickMenu.playerpickMenu.Close();
+                    CheatToggles.DisablePPMCheats("kickPlayer");
+                }
+
+
+                List<NetworkedPlayerInfo> playerDataList = new List<NetworkedPlayerInfo>();
+
+                // All players are saved to playerList
+                foreach (var player in PlayerControl.AllPlayerControls)
+                {
+                    playerDataList.Add(player.Data);
+                }
+
+                // Player pick menu made for killing any player by sending a successful MurderPlayer RPC call
+                PlayerPickMenu.openPlayerPickMenu(playerDataList, (Action)(() =>
+                {
+
+
+                    
+
+
+                }));
+
+                kickPlayerActive = true;
+            }
+
+            // Deactivate cheat if menu is closed
+            if (PlayerPickMenu.playerpickMenu == null)
+            {
+                CheatToggles.kickPlayer = false;
+            }
+        }
+        else if (kickPlayerActive)
+        {
+            kickPlayerActive = false;
         }
     }
 

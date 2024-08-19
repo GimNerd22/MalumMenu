@@ -229,7 +229,7 @@ public static class MalumSabotageSystem
                 HudManager.Instance.Notifier.AddDisconnectMessage("Mushrooms not present on this map");
             }
             
-            CheatToggles.mushSab = false; //Button behaviour
+            //CheatToggles.mushSab = false; //Button behaviour
 
         }
     }
@@ -244,7 +244,7 @@ public static class MalumSabotageSystem
                 try{shipStatus.RpcCloseDoorsOfType(openableDoor.Room);}catch{}
             }
 
-            CheatToggles.doorsSab = false; //Button behaviour
+            //CheatToggles.doorsSab = false; //Button behaviour
 
         }
     }

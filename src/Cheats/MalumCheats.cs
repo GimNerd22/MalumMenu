@@ -1,8 +1,53 @@
-using UnityEngine;
-
+﻿using UnityEngine;
+using Hazel;
+using InnerNet;
 namespace MalumMenu;
 public static class MalumCheats
 {
+    public static void reviveAllCheat()
+    {
+        if (CheatToggles.reviveAll)
+        {
+
+            // Kill all players by sending a successful MurderPlayer RPC call
+            foreach (var player in PlayerControl.AllPlayerControls)
+            {
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+            }
+
+            CheatToggles.reviveAll = false;
+
+        }
+    }
     public static void closeMeetingCheat()
     {
         if(CheatToggles.closeMeeting){
@@ -33,6 +78,35 @@ public static class MalumCheats
             playerControl.SetKillTimer(0f);
         }
     }
+    public static void ForceAumRpcCheat()
+    {
+        if (CheatToggles.ForceAumRpcForEveryone)
+        {
+            foreach (var player in PlayerControl.AllPlayerControls)
+            {
+                // MessageWriter rpcMessage = InnerNetClient_StartRpc((InnerNetClient*)(*Game::pAmongUsClient), (completeForce ? player : *Game::pLocalPlayer)->fields._.NetId, (uint8_t)42069, SendOption__Enum::Reliable, NULL);
+                // MessageWriter_WriteByte(rpcMessage, player->fields.PlayerId, NULL);
+                // MessageWriter_EndMessage(rpcMessage, NULL);
+                foreach (var item in PlayerControl.AllPlayerControls)
+                {
+                    if (player.Data.ClientId == AmongUsClient.Instance.ClientId)
+                    {
+                        // Logger.LogInfo($"发送对象是自己 已拦截");
+                        HudManager.Instance.Notifier.AddDisconnectMessage("发送对象是自己 已拦截！");
+                        break;
+                    }
+                    HudManager.Instance.Notifier.AddDisconnectMessage("执行：赋值writer");
+                    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(player.NetId, unchecked((byte)42069), SendOption.Reliable, player.Data.ClientId);
+                    writer.WriteNetObject(item);
+                    HudManager.Instance.Notifier.AddDisconnectMessage("发送rpc给" + item.name);
+                    writer.Write(true);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer);
+                }
+            }
+        }
+    }
+
+    
 
     public static void completeMyTasksCheat()
     {
@@ -195,7 +269,7 @@ public static class MalumCheats
     {
         if (CheatToggles.murderAll){
 
-            if (Utils.isLobby){
+            if (false){
 
                 HudManager.Instance.Notifier.AddDisconnectMessage("Killing in lobby disabled for being too buggy");
 
@@ -213,6 +287,30 @@ public static class MalumCheats
 
         }
     }
+    public static void kickAllCheat()
+    {
+        if (CheatToggles.kickAll)
+        {
+
+            if (false)
+            {
+
+                HudManager.Instance.Notifier.AddDisconnectMessage("Killing in lobby disabled for being too buggy");
+            }
+            else
+            {
+                // Kill all players by sending a successful MurderPlayer RPC call
+                foreach (var player in PlayerControl.AllPlayerControls)
+                {
+                    
+                }
+
+            }
+
+            CheatToggles.kickAll = false;
+
+        }
+    }
 
     public static void teleportCursorCheat()
     {
@@ -221,6 +319,8 @@ public static class MalumCheats
             // Teleport player to cursor's in-world position on right-click
             if (Input.GetMouseButtonDown(1)) 
             {
+
+                
                 PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }
         }

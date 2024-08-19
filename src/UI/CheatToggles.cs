@@ -7,9 +7,13 @@ namespace MalumMenu
         public static bool speedBoost;
         public static bool teleportPlayer;
         public static bool teleportCursor;
+        public static bool revivePlayer;
         public static bool reportBody;
         public static bool murderPlayer;
+        public static bool kickPlayer;
+        public static bool kickAll;
         public static bool murderAll;
+        public static bool reviveAll;
 
         //Roles
         public static bool changeRole;
@@ -37,6 +41,8 @@ namespace MalumMenu
         public static bool seeRoles;
         public static bool seeDisguises;
         public static bool revealVotes;
+        public static bool ForceAumRpcForEveryone;
+
 
         //Camera
         public static bool spectate;
@@ -79,6 +85,7 @@ namespace MalumMenu
         //public static bool voteImmune;
 
         //Passive
+            
         public static bool unlockFeatures = true;
         public static bool freeCosmetics = true;
         public static bool avoidBans = true;
@@ -86,14 +93,16 @@ namespace MalumMenu
         public static void DisablePPMCheats(string variableToKeep)
         {
             reportBody = variableToKeep != "reportBody" ? false : reportBody;
+            revivePlayer = variableToKeep != "revivePlayer" ? false : revivePlayer;
             murderPlayer = variableToKeep != "murderPlayer" ? false : murderPlayer;
             spectate = variableToKeep != "spectate" ? false : spectate;
             changeRole = variableToKeep != "changeRole" ? false : changeRole;
             teleportPlayer = variableToKeep != "teleportPlayer" ? false : teleportPlayer;
+            kickPlayer = variableToKeep != "kickPlayer" ? false : kickPlayer;
         }
 
         public static bool shouldPPMClose(){
-            return !changeRole && !reportBody && !murderPlayer && !spectate && !teleportPlayer;
+            return !changeRole && !reportBody && !murderPlayer && !spectate && !teleportPlayer && !revivePlayer && !kickPlayer;
         }
     }
 }

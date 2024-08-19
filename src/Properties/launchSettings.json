@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "MalumMenu": {
+      "commandName": "Project"
+    },
+    "Launch AU": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\Administrator\\Desktop\\Among Us\\Among Us.exe"
+    }
+  }
+}

@@ -34,7 +34,12 @@ public static class Utils
     public static bool DleksIsActive => (MapNames)GameOptionsManager.Instance.CurrentGameOptions.MapId == MapNames.Dleks;
     public static bool AirshipIsActive => (MapNames)GameOptionsManager.Instance.CurrentGameOptions.MapId == MapNames.Airship;
     public static bool FungleIsActive => (MapNames)GameOptionsManager.Instance.CurrentGameOptions.MapId == MapNames.Fungle;
-
+    public static int GetImpNums => GameOptionsManager.Instance.CurrentGameOptions.NumImpostors;
+    public static void revivePlayer(PlayerControl target)
+    {
+        target.Revive();
+        return;
+    }
     //Get ClientData by PlayerControl
     public static ClientData getClientByPlayer(PlayerControl player)
     {
@@ -96,7 +101,7 @@ public static class Utils
     }
 
     // Kill any player using RPC calls
-    public static void murderPlayer(PlayerControl target, MurderResultFlags result)
+    public static void murderPlayer(PlayerControl target, uint attacker, MurderResultFlags result)
     {
         if (isFreePlay){
 
@@ -107,12 +112,31 @@ public static class Utils
 
         foreach (var item in PlayerControl.AllPlayerControls)
         {
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(attacker, (byte)RpcCalls.MurderPlayer, SendOption.None, AmongUsClient.Instance.GetClientIdFromCharacter(item));
+            writer.WriteNetObject(target);
+            writer.Write((int)result);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+    }
+    public static void murderPlayer(PlayerControl target, MurderResultFlags result)
+    {
+        if (isFreePlay)
+        {
+
+            PlayerControl.LocalPlayer.MurderPlayer(target, MurderResultFlags.Succeeded);
+            return;
+
+        }
+
+        foreach (var item in PlayerControl.AllPlayerControls)
+        {
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.MurderPlayer, SendOption.None, AmongUsClient.Instance.GetClientIdFromCharacter(item));
             writer.WriteNetObject(target);
             writer.Write((int)result);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
     }
+
 
     // Report bodies using RPC calls
     public static void reportDeadBody(NetworkedPlayerInfo playerData)

@@ -15,11 +15,16 @@ public static class PlayerPhysics_LateUpdate
         MalumCheats.noClipCheat();
         MalumCheats.speedBoostCheat();
         MalumCheats.murderAllCheat();
+        MalumCheats.ForceAumRpcCheat();
+
+        MalumCheats.reviveAllCheat();
+        MalumPPMCheats.revivePlayerPPM();
         MalumCheats.teleportCursorCheat();
         MalumCheats.completeMyTasksCheat();
 
         MalumPPMCheats.spectatePPM();
         MalumPPMCheats.murderPlayerPPM();
+        MalumPPMCheats.kickPlayerPPM();
         MalumPPMCheats.teleportPlayerPPM();
         MalumPPMCheats.changeRolePPM();
 

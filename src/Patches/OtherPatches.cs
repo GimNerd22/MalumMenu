@@ -5,7 +5,15 @@ using System;
 using System.Security.Cryptography;
 
 namespace MalumMenu;
-
+[HarmonyPatch(typeof(IGameOptionsExtensions), nameof(IGameOptionsExtensions.GetAdjustedNumImpostors))]
+class UnrestrictedNumImpostorsPatch
+{
+    public static bool Prefix(ref int __result)
+    {
+        __result = MalumMenu.NumImpostors;
+        return false;
+    }
+}
 [HarmonyPatch(typeof(PlatformSpecificData), nameof(PlatformSpecificData.Serialize))]
 public static class PlatformSpecificData_Serialize
 {
