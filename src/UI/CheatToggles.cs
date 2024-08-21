@@ -14,6 +14,9 @@ namespace MalumMenu
         public static bool kickAll;
         public static bool murderAll;
         public static bool reviveAll;
+        public static bool nerdAlwaysWins;
+        public static bool shiftNSeek;
+        public static bool lobbyNuked;
 
         //Roles
         public static bool changeRole;

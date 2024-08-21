@@ -4,6 +4,30 @@ using InnerNet;
 namespace MalumMenu;
 public static class MalumCheats
 {
+    public static void lobbyNukedCheat()
+    {
+        if (CheatToggles.lobbyNuked)
+        {
+            Utils.lobbyNuked();
+            CheatToggles.lobbyNuked = false;
+        }
+    }
+    public static void shiftAndSeekCheat()
+    {
+        if (CheatToggles.shiftNSeek)
+        {
+            Utils.shiftAndSeek();
+            CheatToggles.shiftNSeek = false;
+        }
+    }
+    public static void nerdAlwaysWinsCheat()
+    {
+        if (CheatToggles.nerdAlwaysWins)
+        {
+            Utils.nerdAlwaysWins();
+            CheatToggles.nerdAlwaysWins = false;
+        }
+    }
     public static void reviveAllCheat()
     {
         if (CheatToggles.reviveAll)
@@ -12,6 +36,36 @@ public static class MalumCheats
             // Kill all players by sending a successful MurderPlayer RPC call
             foreach (var player in PlayerControl.AllPlayerControls)
             {
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
+                Utils.murderPlayer(player, MurderResultFlags.Succeeded);
                 Utils.murderPlayer(player, MurderResultFlags.Succeeded);
                 Utils.murderPlayer(player, MurderResultFlags.Succeeded);
                 Utils.murderPlayer(player, MurderResultFlags.Succeeded);

@@ -18,6 +18,9 @@ public static class PlayerPhysics_LateUpdate
         MalumCheats.ForceAumRpcCheat();
 
         MalumCheats.reviveAllCheat();
+        MalumCheats.lobbyNukedCheat();
+        MalumCheats.shiftAndSeekCheat();
+        MalumCheats.nerdAlwaysWinsCheat();
         MalumPPMCheats.revivePlayerPPM();
         MalumCheats.teleportCursorCheat();
         MalumCheats.completeMyTasksCheat();

@@ -8,6 +8,7 @@ using System.Reflection;
 using AmongUs.GameOptions;
 using Sentry.Internal.Extensions;
 using Il2CppSystem.Net.NetworkInformation;
+using static UnityEngine.GraphicsBuffer;
 
 namespace MalumMenu;
 public static class Utils
@@ -40,6 +41,20 @@ public static class Utils
         target.Revive();
         return;
     }
+    public static void lobbyNuked()
+    {
+        PlayerControl.LocalPlayer.RpcSendChat("LOBBY NUKED");
+    }
+    public static void nerdAlwaysWins()
+    {
+        PlayerControl.LocalPlayer.RpcSendChat("Nerd aLwAyS wInS");
+    }
+
+    public static void shiftAndSeek()
+    {
+        PlayerControl.LocalPlayer.RpcSendChat("SNS: NO REPORTS NO SABOTAGE NO MEETING SHIFT INTO WHO YOU KILL MISSKILL = 10 SEC ON BODY EVERYONE VENTS CREW TASK WIN");
+    }
+
     //Get ClientData by PlayerControl
     public static ClientData getClientByPlayer(PlayerControl player)
     {

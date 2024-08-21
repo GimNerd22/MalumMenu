@@ -16,9 +16,14 @@ public class MenuUI : MonoBehaviour
     {
         groups.Add(new GroupInfo("Player", false, new List<ToggleInfo>() {
             new ToggleInfo(" NoClip", () => CheatToggles.noClip, x => CheatToggles.noClip = x),
-            new ToggleInfo(" SpeedHack", () => CheatToggles.speedBoost, x => CheatToggles.speedBoost = x),
-            new ToggleInfo(" ForceAumRpcForEveryone", () => CheatToggles.ForceAumRpcForEveryone, x => CheatToggles.ForceAumRpcForEveryone = x),
+            new ToggleInfo(" SpeedHack", () => CheatToggles.speedBoost, x => CheatToggles.speedBoost = x)
+            
             }, new List<SubmenuInfo> {
+            new SubmenuInfo("Chat", false, new List<ToggleInfo>() {
+                new ToggleInfo(" SNS", () => CheatToggles.shiftNSeek, x => CheatToggles.shiftNSeek = x),
+                new ToggleInfo(" Lobby Nuked", () => CheatToggles.lobbyNuked, x => CheatToggles.lobbyNuked = x),
+                new ToggleInfo(" Nerd Always Wins", () => CheatToggles.nerdAlwaysWins, x => CheatToggles.nerdAlwaysWins = x)
+            }),
             new SubmenuInfo("Murder", false, new List<ToggleInfo>() {
                 new ToggleInfo(" Murder Player", () => CheatToggles.murderPlayer, x => CheatToggles.murderPlayer = x),
                 new ToggleInfo(" Murder All", () => CheatToggles.murderAll, x => CheatToggles.murderAll = x),
