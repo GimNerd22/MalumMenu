@@ -127,9 +127,9 @@ public class MenuUI : MonoBehaviour
 
         // Console is temporarly disabled until we implement some features for it
 
-        //groups.Add(new GroupInfo("Console", false, new List<ToggleInfo>() {
-        //    new ToggleInfo(" ConsoleUI", () => MalumMenu.consoleUI.isVisible, x => MalumMenu.consoleUI.isVisible = x),
-        //}, new List<SubmenuInfo>()));
+        groups.Add(new GroupInfo("Console", false, new List<ToggleInfo>() {
+            new ToggleInfo(" ConsoleUI", () => MalumMenu.consoleUI.isVisible, x => MalumMenu.consoleUI.isVisible = x),
+        }, new List<SubmenuInfo>()));
 
         groups.Add(new GroupInfo("Passive", false, new List<ToggleInfo>() {
             new ToggleInfo(" Free Cosmetics", () => CheatToggles.freeCosmetics, x => CheatToggles.freeCosmetics = x),

@@ -80,6 +80,7 @@ public static class MalumPPMCheats
                 // Player pick menu made for reviving any player
                 PlayerPickMenu.openPlayerPickMenu(playerDataList, (Action)(() =>
                 {
+                    MalumMenu.consoleUI.Log("Kicked " + PlayerPickMenu.targetPlayerData.Object.name);
                     Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
                     Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
                     Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
@@ -145,7 +146,7 @@ public static class MalumPPMCheats
                 PlayerPickMenu.openPlayerPickMenu(playerDataList, (Action)(() =>
                 {
 
-                    
+                    MalumMenu.consoleUI.Log("Killed " + PlayerPickMenu.targetPlayerData.Object.name);
                     HudManager.Instance.Notifier.AddDisconnectMessage("Killed " + PlayerPickMenu.targetPlayerData.Object.name);
                     Utils.murderPlayer(PlayerPickMenu.targetPlayerData.Object, MurderResultFlags.Succeeded);
                 }));
